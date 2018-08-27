@@ -1,5 +1,7 @@
 # UCB_61A
-This is for UCB 61A course in Summer 2018. https://inst.eecs.berkeley.edu/~cs61a/su18/
+This is for UCB 61A course in Summer 2018. 
+
+https://inst.eecs.berkeley.edu/~cs61a/su18/
 
 In CS 61A, we are interested in teaching you about programming, not about how to use one particular programming language. We consider a series of techniques for controlling program complexity, such as functional programming, data abstraction, and object-oriented programming.
 
