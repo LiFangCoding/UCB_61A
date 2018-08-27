@@ -148,15 +148,15 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     #         score0, score1 = score1, score0
 
     #     if (score0 >= goal or score1 >= goal):
-    #         return score0, score1    
+    #         return score0, score1
 
-       
+
 
     #     if is_swap(score1, score0):
     #         score0, score1 = score1, score0
 
     #     if (score1 >= goal or score0 >= goal):
-    #         return score0, score1 
+    #         return score0, score1
 
     # END PROBLEM 5
     # BEGIN PROBLEM 6
@@ -291,6 +291,16 @@ def make_averaged(fn, num_samples=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def averageFN(*args):
+        res = 0
+        time = 0
+        while time < num_samples:
+            res = res + fn(*args)
+            time = time + 1
+
+        return res / num_samples
+
+    return averageFN
     # END PROBLEM 8
 
 
@@ -305,6 +315,16 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    i = 1
+    min_num = 0
+    max_score = 0
+    while i <= 10:
+        average = make_averaged(roll_dice, num_samples)(i, dice)
+        if average > max_score:
+            max_score = average
+            min_num = i
+        i = i + 1
+    return min_num
     # END PROBLEM 9
 
 
@@ -353,7 +373,10 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 4  # Replace this statement
+    if free_bacon(opponent_score) >= margin:
+        return 0
+    return num_rolls  # Replace this statement
+
     # END PROBLEM 10
 
 
@@ -363,7 +386,12 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 4  # Replace this statement
+    scoreForZero = score + free_bacon(opponent_score)
+    if (scoreForZero < opponent_score and is_swap(scoreForZero, opponent_score)):
+        return 0
+    if free_bacon(opponent_score) >= margin:
+        return 0
+    return num_rolls
     # END PROBLEM 11
 
 
