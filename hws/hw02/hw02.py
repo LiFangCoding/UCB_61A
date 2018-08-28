@@ -214,6 +214,10 @@ def filtered_accumulate(combiner, base, pred, n, term):
     """
     def combine_if(x, y):
         "*** YOUR CODE HERE ***"
+        if pred(y):
+            return combiner(x, y)
+        else:
+            return  x
     return accumulate(combine_if, base, n, term)
 
 def odd(x):
@@ -245,6 +249,15 @@ def make_repeater(f, n):
     5
     """
     "*** YOUR CODE HERE ***"
+    # This is a naive solution
+    def repeat(x):
+        i = 0
+        res = x
+        while i < n:
+            res = f(res) 
+            i = i+ 1
+        return res
+    return repeat
 
 ###################
 # Extra Questions #
