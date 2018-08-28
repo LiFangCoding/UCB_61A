@@ -151,6 +151,12 @@ def accumulate(combiner, base, n, term):
     72
     """
     "*** YOUR CODE HERE ***"
+    if n == 0:
+        return combiner(base, term(0))
+    if n == 1:
+        return combiner(base, term(1))
+    else:
+        return combiner(accumulate(combiner, base, n - 1, term), term(n))
 
 def summation_using_accumulate(n, term):
     """Returns the sum of term(1) + ... + term(n). The implementation
@@ -166,6 +172,7 @@ def summation_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
+    return accumulate(add, 0, n, term)
 
 def product_using_accumulate(n, term):
     """An implementation of product using accumulate.
@@ -180,7 +187,7 @@ def product_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    return accumulate(mul, 1, n, term)
 # Q6
 def filtered_accumulate(combiner, base, pred, n, term):
     """Return the result of combining the terms in a sequence of N terms
