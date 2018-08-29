@@ -87,6 +87,27 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    return helper(1, n)[0]
+
+# change the value to be the one we need.
+def helper(startVal, n):
+    if n == 1:
+        return [startVal, True]
+    else:
+        prev = helper(1, n - 1)
+        prevVal, prevAscend = prev[0], prev[1]
+        if prevAscend == True:
+            curVal = prevVal + 1
+        else:
+            curVal = prevVal - 1
+
+        if has_seven(n) or n % 7 == 0:
+            curAscend = not prevAscend
+        else:
+            curAscend = prevAscend   
+
+    return [curVal, curAscend]
+
 
 def has_seven(k):
     """Returns True if at least one of the digits of k is a 7, False otherwise.
