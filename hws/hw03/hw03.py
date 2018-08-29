@@ -149,7 +149,27 @@ def count_change(amount):
     True
     """
     "*** YOUR CODE HERE ***"
+    m = findmax(amount)
+    return helper(amount, m)
 
+# the number of ways to make change for amount when the maximum to use is m
+def helper(amount, m):
+    if amount == 0:
+        return 1
+    elif amount < 0:
+        return 0
+    elif m <= 0:
+        return 0
+    else:
+        with_m = helper(amount - m, m)
+        wo_m = helper(amount, m // 2)
+    return with_m + wo_m
+
+def findmax(amount):
+    if amount == 1:
+        return 1
+    else:
+        return 2 * findmax(amount // 2)
 # Q4
 def print_move(origin, destination):
     """Print instructions to move a disk."""
