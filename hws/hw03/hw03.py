@@ -245,15 +245,13 @@ def replace_leaf(t, old, new):
     True
     """
     "*** YOUR CODE HERE ***"
-    if t == []:
-        return []
-    elif is_leaf(t) and label(t) == old:
+    if is_leaf(t) and label(t) == old:
         return tree(new)
     else:
         newBranches = []
         for branch in branches(t):
-            newBranches = newBranches + replace_leaf(branch, old, new)
-        return tree(t, newBranches)
+            newBranches += [replace_leaf(branch, old, new)]
+        return tree(t[0], newBranches)
 
 
 
