@@ -204,7 +204,16 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    if n == 1:
+        print_move(start, end)
+    else:
+        temp = 1 + 2 + 3 - start - end
+        move_stack(n - 1, start, temp)
+        print_move(start, end)
+        move_stack(n - 1, temp, end)
 
+
+    
 # Q5
 def replace_leaf(t, old, new):
     """Returns a new tree where every leaf value equal to old has
@@ -236,6 +245,17 @@ def replace_leaf(t, old, new):
     True
     """
     "*** YOUR CODE HERE ***"
+    if t == []:
+        return []
+    elif is_leaf(t) and label(t) == old:
+        return tree(new)
+    else:
+        newBranches = []
+        for branch in branches(t):
+            newBranches = newBranches + replace_leaf(branch, old, new)
+        return tree(t, newBranches)
+
+
 
 # Tree ADT
 def tree(label, branches=[]):
