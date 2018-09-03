@@ -5,14 +5,14 @@ test = {
     {
       'cases': [
         {
-          'answer': '85cc4d1eff44e1c6f45d86bf02942b8c',
+          'answer': 'restaurant names',
           'choices': [
             'restaurant names',
             'restaurants',
             'restaurant ratings'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': 'rate_all returns a dictionary. What are the keys of this dictionary?'
         },
         {
