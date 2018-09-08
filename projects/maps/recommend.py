@@ -100,6 +100,7 @@ def find_predictor(user, restaurants, feature_fn):
     restaurants -- A sequence of restaurants
     feature_fn -- A function that takes a restaurant and returns a number
     """
+     # "*** YOUR CODE HERE ***"
     xs = [feature_fn(r) for r in restaurants]
     ys = [user_rating(user, restaurant_name(r)) for r in restaurants]
 
@@ -111,22 +112,7 @@ def find_predictor(user, restaurants, feature_fn):
 
     xys = zip(xs, ys)
     Sxy = sum((xy[0] - xmean) * (xy[1] - ymean) for xy in xys)
-
-    # "*** YOUR CODE HERE ***"
-    # Sxx = 0
-    # xmean = mean(xs)
-    # for x in xs:
-    #     Sxx += (x - xmean)**2
-    # # END Question 7
-
-    # Syy = 0
-    # ymean = mean(ys)
-    # for y in ys:
-    #     Syy += (y - ymean)**2
-
-    # Sxy = 0
-    # for i in range(len(xs)):
-    #     Sxy += (xs[i] - xmean)*(ys[i] - ymean)
+   
     b = Sxy / Sxx
     a = ymean - b * xmean
     r_squared = Sxy ** 2 / (Sxx * Syy)
