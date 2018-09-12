@@ -177,6 +177,9 @@ def search(query, restaurants):
     """
     # BEGIN Question 10
     "*** YOUR CODE HERE ***"
+    def contains(categories, query):
+        return (query in set(categories))
+    return [res for res in restaurants if contains(restaurant_categories(res), query)]
     # END Question 10
 
 
