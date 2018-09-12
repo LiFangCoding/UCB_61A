@@ -52,9 +52,8 @@ def user_reviewed_restaurants(user, restaurants):
 
 def user_rating(user, restaurant_name):
     """Return the rating given for restaurant_name by user."""
-    reviewed_by_user = user_reviews(user)
-    user_review = reviewed_by_user[restaurant_name]
-    return review_rating(user_review)
+    review = user_reviews(user)[restaurant_name]
+    return review_rating(review)
 
 
 # Restaurants
@@ -101,5 +100,7 @@ def restaurant_ratings(restaurant):
     restaurant based on the reviews of the restaurant."""
     # BEGIN Question 2
     "*** YOUR CODE HERE ***"
-    return [review_rating(x) for x in restaurant[4]]
+    ratings = [review_rating(review) for review in restaurant[4]]
+    return ratings
     # END Question 2
+

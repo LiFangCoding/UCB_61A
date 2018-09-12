@@ -156,11 +156,13 @@ def rate_all(user, restaurants, feature_fns):
     "*** YOUR CODE HERE ***"
     ratingDic = {}
     for resReviewed in reviewed:
-        ratingDic[resReviewed] = user_rating(user, resReviewed)
-    unreviewed = [res for res in restaurants if res not in reviewed]
+        reviewed_name = restaurant_name(resReviewed)
+        ratingDic[reviewed_name] = user_rating(user, reviewed_name)
 
+    unreviewed = [res for res in restaurants if res not in reviewed]
     for resUnreviewed in unreviewed:
-        ratingDic[resUnreviewed] = predictor(resUnreviewed)
+        unreviewed_name = restaurant_name(resUnreviewed)
+        ratingDic[unreviewed_name] = predictor(resUnreviewed)
 
     return ratingDic    
     # END Question 9
