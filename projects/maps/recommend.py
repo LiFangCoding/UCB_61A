@@ -136,7 +136,7 @@ def best_predictor(user, restaurants, feature_fns):
     # BEGIN Question 8
     "*** YOUR CODE HERE ***"
     maxfeature = max(feature_fns, key = lambda feature: find_predictor(user, reviewed, feature)[1])
-    return find_predictor(user, reviewed, maxfeature)
+    return find_predictor(user, reviewed, maxfeature)[0]
     # END Question 8
 
 
@@ -151,9 +151,18 @@ def rate_all(user, restaurants, feature_fns):
     """
     predictor = best_predictor(user, ALL_RESTAURANTS, feature_fns)
     reviewed = user_reviewed_restaurants(user, restaurants)
+
     # BEGIN Question 9
     "*** YOUR CODE HERE ***"
-    
+    ratingDic = {}
+    for resReviewed in reviewed:
+        ratingDic[resReviewed] = user_rating(user, resReviewed)
+    unreviewed = [res for res in restaurants if res not in reviewed]
+
+    for resUnreviewed in unreviewed:
+        ratingDic[resUnreviewed] = predictor(resUnreviewed)
+
+    return ratingDic    
     # END Question 9
 
 
